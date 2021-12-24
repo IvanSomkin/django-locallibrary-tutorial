@@ -41,4 +41,3 @@ jobs:
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_migrate:latest
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:${{ github.sha }}  
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:latest
-

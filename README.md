@@ -1,4 +1,4 @@
-# Django Local Library
+# Django Local Library (Ivan Somkin Docker Test)
 
 Tutorial "Local Library" website written in Django.
 

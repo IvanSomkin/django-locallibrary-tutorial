@@ -22,6 +22,7 @@ jobs:
       - name: Build
         run: docker-compose build
       - name: Tag
+        run: |
           docker tag django-library-tutorial_web ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:${{ github.sha }}  
           docker tag django-library-tutorial_web ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:latest
           docker tag django-library-tutorial_web_migrate ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_migrate:${{ github.sha }}  

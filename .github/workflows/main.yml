@@ -22,11 +22,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build
-        run: docker-compose build
+      - name: Build & Run
+        run: docker-compose up
       
       - name: Test
         run: docker-compose exec web_run python3.8 manage.py test --no-input
+      
+      - name: Stop
+        run: docker-compose stop
       
       - name: Tag
         run: |

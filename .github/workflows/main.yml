@@ -7,7 +7,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest    
-
+    
     steps:
       - uses: actions/checkout@v1
 
@@ -24,6 +24,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build
         run: docker-compose build
+      
+      - name: Test
+        run: docker-compose exec web_run python3.8 manage.py test --no-input
+      
       - name: Tag
         run: |
           docker tag ${{ secrets.DOCKER_USER }}/django-library-tutorial_web ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:${{ github.sha }}  

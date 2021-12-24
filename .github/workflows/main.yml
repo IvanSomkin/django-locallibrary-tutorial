@@ -23,7 +23,9 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build & Run
-        run: docker-compose up
+        run: |
+          docker-compose up -d
+          kill -2 
       
       - name: Test
         run: docker-compose exec web_run python3.8 manage.py test --no-input

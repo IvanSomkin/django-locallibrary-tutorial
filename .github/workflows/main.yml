@@ -25,7 +25,7 @@ jobs:
       - name: Build & Run
         run: |
           docker-compose up -d
-          kill -2 
+          kill -l 2 
       
       - name: Test
         run: docker-compose exec web_run python3.8 manage.py test --no-input

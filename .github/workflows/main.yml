@@ -14,12 +14,21 @@ jobs:
   cd:
     runs-on: ubuntu-latest
     needs: ci
+    environment: Docker
     steps:
       - uses: actions/checkout@v1
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build
         run: docker-compose build
+      - name: Tag
+          docker tag django-library-tutorial_web ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:${{ github.sha }}  
+          docker tag django-library-tutorial_web ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:latest
+          docker tag django-library-tutorial_web_migrate ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_migrate:${{ github.sha }}  
+          docker tag django-library-tutorial_web_migrate ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_migrate:latest
+          docker tag django-library-tutorial_web_run ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:${{ github.sha }}  
+          docker tag django-library-tutorial_web_run ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:latest
+ 
       - name: Push
         run: |
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web:${{ github.sha }}  
@@ -28,3 +37,4 @@ jobs:
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_migrate:latest
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:${{ github.sha }}  
           docker push ${{ secrets.DOCKER_USER }}/django-library-tutotial_web_run:latest
+
